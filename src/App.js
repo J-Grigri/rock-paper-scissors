@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react" ;
+import "./App.css";
+
+import ChoiceCard from "./components/ChoiseCard" ;
+
+const choices = {
+  rock: "https://goodday451999.github.io/Rock-Paper-Scissors-Neo/images/stone.png",
+  paper: "https://goodday451999.github.io/Rock-Paper-Scissors-Neo/images/paper.png",
+  scissors: "https://goodday451999.github.io/Rock-Paper-Scissors-Neo/images/scissors.png"
+};
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ChoiceCard 
+      title="You" 
+      winner={false} 
+      imgURL={choices.paper}
+
+       />
+      <ChoiceCard 
+      title="Computer" 
+      winner={true} 
+      imgURL={choices.rock} 
+      />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
+
+
+
+
+
+
