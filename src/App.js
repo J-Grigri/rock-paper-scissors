@@ -20,8 +20,8 @@ const choices = {
 export const getRandomChoice = () => {
   let choiceNames = Object.keys(choices); // returns an array of the keys, so: ['scissors', 'paper', 'rock']
   let randomIndex = Math.floor(Math.random() * 3); // either 0, 1, or 2
-  let choiceName = choiceNames[randomIndex];
-  return choices[choiceName];
+  let choiceName = choiceNames[randomIndex];//this is just a string but we need to convert it to object
+  return choices[choiceName]; //access the object
 };
 
 export const getRoundOutcome = userChoice => {
@@ -29,7 +29,7 @@ export const getRoundOutcome = userChoice => {
 
   let result;
   if (userChoice === "Rock") {
-    result = computerChoice === "Scissors" ? "You" : "Computer";//clarify how this translates 
+    result = computerChoice === "Scissors" ? "Win" : "Computer";//determine winner - computer Scissors? true/false
   } if (userChoice === "Paper") {
     result = computerChoice === "Rock" ? "You" : "Computer";
   }if (userChoice === "Scissors") {
@@ -41,9 +41,9 @@ export const getRoundOutcome = userChoice => {
 
 function App() {
   // Define state and useState function to initilize the selectedItem - visi mainigie elementi
-  const [playerChoice, setPlayerChoice] = useState(null);
-  const [computerChoice, setComputerChoice] = useState(null);
-  const [result, setResult] = useState("") // by default empty string, but will change to either win, lose, or tie
+  const [playerChoice, setPlayerChoice] = useState({});
+  const [computerChoice, setComputerChoice] = useState({});
+  const [result, setResult] = useState(""); // by default empty string, but will change to either win, lose, or tie
   const [prompt, setGamePrompt] = useState("Rock-Paper-Scissors!");
   const [gameHistory, setGameHistory] = useState([]);//game history
 
@@ -54,7 +54,8 @@ function App() {
     // use choice to select the correct key inside choices object
     const newUserChoice = choices[choice];
     // save the result to our state
-    const [roundResult, newComputerChoice] = getRoundOutcome(newUserChoice.name) 
+    const [roundResult, newComputerChoice] = getRoundOutcome(newUserChoice.name) ;
+
     setPlayerChoice(newUserChoice);
     // newComputerChoice is just a string, we need to change it to object 
     setComputerChoice(choices[newComputerChoice]); // newComputerChoice comes from the getOutcome()    
